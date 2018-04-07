@@ -1,13 +1,19 @@
 package microservices.book.multiplication.service;
 
 import microservices.book.multiplication.domain.Multiplication;
+import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 
 public interface MultiplicationService {
 
     /**
-     * Creates a {@link Multiplication} object with two randomly generated factors
+     * Creates a random {@link Multiplication} object
      *
-     * @return a Multiplication object with random factors
+     * @return a multiplication of randomly generated numbers
      */
     Multiplication createRandomMultiplication();
+
+    /**
+     * @return true if the attemp matches the result of the multiplication, false otherwise
+     */
+    boolean checkAttempt(final MultiplicationResultAttempt resultAttempt);
 }
