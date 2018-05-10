@@ -3,120 +3,40 @@
   <ID>JAVA</ID>
   <OriginalElement>microservices.book.multiplication</OriginalElement>
   <nodes>
-    <node x="1421.0" y="830.0">microservices.book.multiplication.service.RandomGeneratorServiceImpl</node>
-    <node x="905.0" y="366.0">microservices.book.multiplication.service.MultiplicationServiceImpl</node>
-    <node x="330.25" y="23.0">microservices.book.multiplication.domain.User</node>
-    <node x="452.5" y="658.0">microservices.book.multiplication.service.MultiplicationService</node>
-    <node x="1226.042105263158" y="669.5">microservices.book.multiplication.service.RandomGeneratorService</node>
-    <node x="582.0" y="829.5">microservices.book.multiplication.controller.MultiplicationController</node>
-    <node x="844.2587719298247" y="0.0">microservices.book.multiplication.domain.Multiplication</node>
-    <node x="83.85000000000002" y="634.0">microservices.book.multiplication.controller.MultiplicationResultAttemptController.ResultResponse</node>
-    <node x="335.25" y="299.0">microservices.book.multiplication.domain.MultiplicationResultAttempt</node>
-    <node x="0.0" y="829.5">microservices.book.multiplication.controller.MultiplicationResultAttemptController</node>
+    <node x="0.0" y="694.0">microservices.book.multiplication.service.RandomGeneratorServiceImpl</node>
+    <node x="566.0" y="591.0">microservices.book.multiplication.domain.User</node>
+    <node x="0.0" y="422.0">microservices.book.multiplication.service.MultiplicationServiceImpl</node>
+    <node x="7.0" y="296.0">microservices.book.multiplication.service.MultiplicationService</node>
+    <node x="0.0" y="591.0">microservices.book.multiplication.service.RandomGeneratorService</node>
+    <node x="300.0" y="591.0">microservices.book.multiplication.domain.Multiplication</node>
+    <node x="0.0" y="839.0">microservices.book.multiplication.controller.MultiplicationController</node>
+    <node x="161.0" y="151.0">microservices.book.multiplication.controller.MultiplicationResultAttemptController.ResultResponse</node>
+    <node x="468.0" y="296.0">microservices.book.multiplication.domain.MultiplicationResultAttempt</node>
+    <node x="0.0" y="0.0">microservices.book.multiplication.controller.MultiplicationResultAttemptController</node>
   </nodes>
   <notes />
   <edges>
     <edge source="microservices.book.multiplication.service.RandomGeneratorServiceImpl" target="microservices.book.multiplication.service.RandomGeneratorService">
       <point x="0.0" y="-50.0" />
-      <point x="1548.5" y="798.0" />
-      <point x="1438.542105263158" y="798.0" />
-      <point x="85.0" y="26.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.domain.MultiplicationResultAttempt" target="microservices.book.multiplication.domain.User">
-      <point x="-105.5" y="-142.5" />
-      <point x="0.0" y="96.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.service.MultiplicationServiceImpl" target="microservices.book.multiplication.service.MultiplicationService">
-      <point x="-176.25" y="-62.0" />
-      <point x="1013.25" y="788.0" />
-      <point x="820.6000000000001" y="788.0" />
-      <point x="163.60000000000014" y="38.0" />
-    </edge>
-    <edge source="microservices.book.multiplication.controller.MultiplicationResultAttemptController" target="microservices.book.multiplication.controller.MultiplicationResultAttemptController.ResultResponse">
-      <point x="0.0" y="-50.5" />
-      <point x="281.0" y="798.0" />
-      <point x="263.85" y="798.0" />
-      <point x="60.0" y="62.0" />
-    </edge>
-    <edge source="microservices.book.multiplication.service.MultiplicationServiceImpl" target="microservices.book.multiplication.domain.Multiplication">
-      <point x="35.25" y="-62.0" />
-      <point x="1224.75" y="798.0" />
-      <point x="1160.9061403508772" y="798.0" />
-      <point x="1160.9061403508772" y="259.0" />
-      <point x="1043.1587719298245" y="259.0" />
-      <point x="88.39999999999998" y="119.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.service.MultiplicationServiceImpl" target="microservices.book.multiplication.service.RandomGeneratorService">
-      <point x="176.25" y="-62.0" />
-      <point x="1365.75" y="798.0" />
-      <point x="1353.542105263158" y="798.0" />
       <point x="0.0" y="26.5" />
     </edge>
-    <edge source="microservices.book.multiplication.domain.MultiplicationResultAttempt" target="microservices.book.multiplication.domain.Multiplication">
-      <point x="105.5" y="-142.5" />
-      <point x="651.75" y="269.0" />
-      <point x="866.3587719298247" y="269.0" />
-      <point x="-88.39999999999998" y="119.5" />
+    <edge source="microservices.book.multiplication.service.MultiplicationServiceImpl" target="microservices.book.multiplication.service.MultiplicationService">
+      <point x="0.0" y="-62.0" />
+      <point x="0.0" y="38.0" />
     </edge>
-    <edge source="microservices.book.multiplication.service.MultiplicationServiceImpl" target="microservices.book.multiplication.domain.MultiplicationResultAttempt">
-      <point x="-105.75" y="-62.0" />
-      <point x="1083.75" y="778.0" />
-      <point x="965.8815789473686" y="778.0" />
-      <point x="965.8815789473686" y="604.0" />
-      <point x="686.9166666666665" y="604.0" />
-      <point x="140.66666666666652" y="142.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.service.MultiplicationService" target="microservices.book.multiplication.domain.Multiplication">
-      <point x="102.25" y="-38.0" />
-      <point x="759.25" y="614.0" />
-      <point x="804.2491228070176" y="614.0" />
-      <point x="804.2491228070176" y="279.0" />
-      <point x="910.5587719298246" y="279.0" />
-      <point x="-44.200000000000045" y="119.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.controller.MultiplicationController" target="microservices.book.multiplication.service.MultiplicationService">
-      <point x="0.0" y="-50.5" />
-      <point x="770.0" y="798.0" />
-      <point x="738.8" y="798.0" />
-      <point x="81.79999999999995" y="38.0" />
-    </edge>
-    <edge source="microservices.book.multiplication.controller.MultiplicationController" target="microservices.book.multiplication.domain.Multiplication">
-      <point x="125.33333333333326" y="-50.5" />
-      <point x="895.3333333333333" y="798.0" />
-      <point x="1017.2982456140353" y="798.0" />
-      <point x="1017.2982456140353" y="279.0" />
-      <point x="954.7587719298247" y="279.0" />
-      <point x="0.0" y="119.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.controller.MultiplicationResultAttemptController" target="microservices.book.multiplication.domain.MultiplicationResultAttempt">
-      <point x="-224.79999999999995" y="-50.5" />
-      <point x="56.200000000000045" y="798.0" />
-      <point x="73.35000000000002" y="798.0" />
-      <point x="73.35000000000002" y="614.0" />
-      <point x="405.58333333333326" y="614.0" />
-      <point x="-140.66666666666674" y="142.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.service.MultiplicationService" target="microservices.book.multiplication.domain.MultiplicationResultAttempt">
-      <point x="-102.25" y="-38.0" />
-      <point x="554.75" y="614.0" />
-      <point x="546.25" y="614.0" />
-      <point x="0.0" y="142.5" />
-    </edge>
-    <edge source="microservices.book.multiplication.controller.MultiplicationResultAttemptController" target="microservices.book.multiplication.service.MultiplicationService">
-      <point x="224.79999999999995" y="-50.5" />
-      <point x="505.79999999999995" y="798.0" />
-      <point x="575.2" y="798.0" />
-      <point x="-81.79999999999995" y="38.0" />
+    <edge source="microservices.book.multiplication.controller.MultiplicationResultAttemptController.ResultResponse" target="microservices.book.multiplication.controller.MultiplicationResultAttemptController">
+      <point x="0.0" y="-50.0" />
+      <point x="0.0" y="50.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.0" x="838.0" y="461.0" />
-  <SelectedNodes>
-    <node>microservices.book.multiplication.service.MultiplicationServiceImpl</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="1.0" x="403.0" y="473.0" />
+  <SelectedNodes />
   <Categories>
-    <Category>Fields</Category>
     <Category>Constructors</Category>
     <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
