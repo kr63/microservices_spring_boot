@@ -42,7 +42,9 @@ public class GameServiceImpl implements GameService {
                     userId, scoreCard.getScore(), attemptId);
             List<BadgeCard> badgeCards = processForBadges(userId, attemptId);
             return new GameStats(userId, scoreCard.getScore(),
-                    badgeCards.stream().map(BadgeCard::getBadge).collect(Collectors.toList()));
+                    badgeCards.stream()
+                            .map(BadgeCard::getBadge)
+                            .collect(Collectors.toList()));
         }
         return GameStats.emtyStats(userId);
     }
@@ -118,7 +120,9 @@ public class GameServiceImpl implements GameService {
         int score = scoreCardRepository.getTotalScoreForUser(userId);
         List<BadgeCard> badgeCards = badgeCardRepository
                 .findByUserIdOrderByBadgeTimestampDesc(userId);
-        return new GameStats(userId, score, badgeCards.stream()
-                .map(BadgeCard::getBadge).collect(Collectors.toList()));
+        return new GameStats(userId, score,
+                badgeCards.stream()
+                        .map(BadgeCard::getBadge)
+                        .collect(Collectors.toList()));
     }
 }

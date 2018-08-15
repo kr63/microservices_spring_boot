@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * This implementation of MultiplicationResultAttemptClient interface connects to
- * the Multiplication microservice via REST
+ * the Multiplication microservice via REST.
  */
 @Component
 public class MultiplicationResultAttemptClientImpl implements MultiplicationResultAttemptClient {
@@ -27,6 +27,7 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
     @Override
     public MultiplicationResultAttempt retrieveMultiplicationResultAttemptById(
             final Long multiplicationResultAttemptId) {
+
         return restTemplate.getForObject(
                 multiplicationHost + "/results/" + multiplicationResultAttemptId,
                 MultiplicationResultAttempt.class);
