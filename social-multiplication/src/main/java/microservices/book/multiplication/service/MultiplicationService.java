@@ -19,5 +19,20 @@ public interface MultiplicationService {
      */
     boolean checkAttempt(final MultiplicationResultAttempt resultAttempt);
 
-    List<MultiplicationResultAttempt> getStatsForUser(String userAlias);
+    /**
+     * Gets the statistics for a given user
+     *
+     * @param userAlias the user's alias
+     * @return a list of {@link MultiplicationResultAttempt} object, being the past
+     * attempts of the user.
+     */
+    List<MultiplicationResultAttempt> getStatsForUser(final String userAlias);
+
+    /**
+     * Gets an attempt by its id
+     *
+     * @param resultId the id of the attempt
+     * @return the {@link MultiplicationResultAttempt} object matching the id, otherwise null.
+     */
+    MultiplicationResultAttempt getResultById(final Long resultId);
 }
