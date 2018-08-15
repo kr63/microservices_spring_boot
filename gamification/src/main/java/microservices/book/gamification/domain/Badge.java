@@ -12,5 +12,6 @@ public enum Badge {
 
     // other badges
     FIRST_ATTEMPT,
-    FIRST_WON
+    FIRST_WON,
+    LUCKY_NUMBER
 }

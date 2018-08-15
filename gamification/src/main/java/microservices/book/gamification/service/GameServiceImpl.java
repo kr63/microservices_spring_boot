@@ -2,6 +2,7 @@ package microservices.book.gamification.service;
 
 import lombok.extern.slf4j.Slf4j;
 import microservices.book.gamification.client.MultiplicationResultAttemptClient;
+import microservices.book.gamification.client.dto.MultiplicationResultAttempt;
 import microservices.book.gamification.domain.Badge;
 import microservices.book.gamification.domain.BadgeCard;
 import microservices.book.gamification.domain.GameStats;
@@ -18,6 +19,8 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class GameServiceImpl implements GameService {
+
+    private static final int LUCKY_NUMBER = 42;
 
     private ScoreCardRepository scoreCardRepository;
     private BadgeCardRepository badgeCardRepository;
@@ -77,6 +80,17 @@ public class GameServiceImpl implements GameService {
         if (scoreCardList.size() == 1 && !containsBadge(badgeCardList, Badge.FIRST_WON)) {
             BadgeCard firstWonBadge = giveBadgeToUser(Badge.FIRST_WON, userId);
             badgeCards.add(firstWonBadge);
+        }
+
+        // Lucky number badge
+        MultiplicationResultAttempt attempt = attemptClient
+                .retrieveMultiplicationResultAttemptById(attemptId);
+
+        if (!containsBadge(badgeCards, Badge.LUCKY_NUMBER) &&
+                (LUCKY_NUMBER == attempt.getMultiplicationFactorA() ||
+                        LUCKY_NUMBER == attempt.getMultiplicationFactorB())) {
+            BadgeCard luckyNumberBadge = giveBadgeToUser(Badge.LUCKY_NUMBER, userId);
+            badgeCards.add(luckyNumberBadge);
         }
 
         return badgeCards;
