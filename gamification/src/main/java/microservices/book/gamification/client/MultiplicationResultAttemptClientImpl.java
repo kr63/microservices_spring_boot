@@ -18,8 +18,8 @@ public class MultiplicationResultAttemptClientImpl implements MultiplicationResu
 
     @Autowired
     public MultiplicationResultAttemptClientImpl(final RestTemplate restTemplate,
-                                                 @Value("http://localhost:8080")
-                                                 String multiplicationHost) {
+                                                 @Value("${multiplicationHost}")
+                                                 final String multiplicationHost) {
         this.restTemplate = restTemplate;
         this.multiplicationHost = multiplicationHost;
     }
