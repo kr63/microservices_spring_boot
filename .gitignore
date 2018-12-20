@@ -38,10 +38,7 @@ buildNumber.properties
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/**/workspace.xml
 .idea/**/tasks.xml
-.idea/dictionaries
-
 # Sensitive or high-churn files:
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -53,8 +50,6 @@ buildNumber.properties
 
 # Gradle:
 .idea/**/gradle.xml
-.idea/**/libraries
-
 # CMake
 cmake-build-debug/
 cmake-build-release/
@@ -74,8 +69,6 @@ out/
 .idea_modules/
 
 # JIRA plugin
-atlassian-ide-plugin.xml
-
 # Cursive Clojure plugin
 .idea/replstate.xml
 
@@ -92,3 +85,5 @@ fabric.properties
 *.iml
 out
 gen
+/ui/jetty/jetty.pid
+/ui/jetty.state
