@@ -73,12 +73,13 @@ public class MultiplicationServiceImplTest {
                 attempt.getId(), attempt.getUser().getId(), true);
 
         given(userRepository.findByAlias("john_dow")).willReturn(Optional.empty());
+        given(attemptRepository.save(verifiedAttempt)).willReturn(verifiedAttempt);
 
         // when
-        boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
+        MultiplicationResultAttempt resultAttempt = multiplicationServiceImpl.checkAttempt(attempt);
 
         // assert
-        assertThat(attemptResult).isTrue();
+        assertThat(resultAttempt.isCorrect()).isTrue();
         verify(attemptRepository).save(verifiedAttempt);
         verify(eventDispatcher).send(eq(event));
     }
@@ -93,12 +94,13 @@ public class MultiplicationServiceImplTest {
         MultiplicationSolvedEvent event = new MultiplicationSolvedEvent(
                 attempt.getId(), attempt.getUser().getId(), false);
         given(userRepository.findByAlias("john_dow")).willReturn(Optional.empty());
+        given(attemptRepository.save(attempt)).willReturn(attempt);
 
         // when
-        boolean attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
+        MultiplicationResultAttempt attemptResult = multiplicationServiceImpl.checkAttempt(attempt);
 
         // assert
-        assertThat(attemptResult).isFalse();
+        assertThat(attemptResult.isCorrect()).isFalse();
         verify(attemptRepository).save(attempt);
         verify(eventDispatcher).send(eq(event));
     }

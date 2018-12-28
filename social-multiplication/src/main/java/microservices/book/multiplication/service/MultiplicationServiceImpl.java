@@ -45,7 +45,7 @@ class MultiplicationServiceImpl implements MultiplicationService {
 
     @Override
     @Transactional
-    public boolean checkAttempt(final MultiplicationResultAttempt attempt) {
+    public MultiplicationResultAttempt checkAttempt(final MultiplicationResultAttempt attempt) {
 
         // Check if the user already exist for that alias
         Optional<User> user = userRepository.findByAlias(attempt.getUser().getAlias());
@@ -60,21 +60,21 @@ class MultiplicationServiceImpl implements MultiplicationService {
                         attempt.getMultiplication().getFactorA() * attempt.getMultiplication().getFactorB();
 
         // Creates a copy, now setting the 'correct' field accordingly
-        MultiplicationResultAttempt checkedAttempt =
-                new MultiplicationResultAttempt(
-                        user.orElse(attempt.getUser()),
-                        attempt.getMultiplication(),
-                        attempt.getResultAttempt(),
-                        isCorrect);
+        MultiplicationResultAttempt checkedAttempt = new MultiplicationResultAttempt(
+                user.orElse(attempt.getUser()),
+                attempt.getMultiplication(),
+                attempt.getResultAttempt(),
+                isCorrect);
 
-        attemptRepository.save(checkedAttempt);
+        // stores attempt
+        MultiplicationResultAttempt storedAttempt = attemptRepository.save(checkedAttempt);
 
-        eventDispatcher.send(
-                new MultiplicationSolvedEvent(
-                        checkedAttempt.getId(),
-                        checkedAttempt.getUser().getId(),
-                        checkedAttempt.isCorrect()));
-        return isCorrect;
+        // communicates the result via event
+        eventDispatcher.send(new MultiplicationSolvedEvent(
+                checkedAttempt.getId(),
+                checkedAttempt.getUser().getId(),
+                checkedAttempt.isCorrect()));
+        return storedAttempt;
     }
 
     @Override
