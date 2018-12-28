@@ -23,7 +23,13 @@ public final class User {
     private Long id;
 
     private final String alias;
+
     protected User() {
         alias = null;
+    }
+
+    public User(final long userId, final String userAlias) {
+        this.id = userId;
+        this.alias = userAlias;
     }
 }
