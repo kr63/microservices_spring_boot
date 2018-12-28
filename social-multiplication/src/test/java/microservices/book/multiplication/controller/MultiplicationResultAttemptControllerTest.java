@@ -26,6 +26,8 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MultiplicationResultAttemptController.class)
@@ -58,13 +60,13 @@ public class MultiplicationResultAttemptControllerTest {
 
     private void genericParameterizedTest(final boolean correct) throws Exception {
         // given
-        given(multiplicationService
-                .checkAttempt(any(MultiplicationResultAttempt.class)))
-                .willReturn(correct);
         User user = new User("john");
         Multiplication multiplication = new Multiplication(50, 70);
-        MultiplicationResultAttempt attempt =
-                new MultiplicationResultAttempt(user, multiplication, 3500, correct);
+        MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(
+                user, multiplication, 3500, correct);
+        given(multiplicationService
+                .checkAttempt(any(MultiplicationResultAttempt.class)))
+                .willReturn(attempt);
 
         // when
         MockHttpServletResponse response = mvc.perform(post("/results")
@@ -84,26 +86,38 @@ public class MultiplicationResultAttemptControllerTest {
     }
 
     @Test
-    public void getuserStats() throws Exception {
+    public void getUserStats() throws Exception {
         // given
         User user = new User("john_dow");
         Multiplication multiplication = new Multiplication(50, 70);
+        MultiplicationResultAttempt attempt =
+                new MultiplicationResultAttempt(user, multiplication, 3500, true);
+        List<MultiplicationResultAttempt> recentAttempts = Lists.newArrayList(attempt, attempt);
+        String jsonExpect = jsonResultAttemptList.write(recentAttempts).getJson();
+        given(multiplicationService.getStatsForUser("john_dow")).willReturn(recentAttempts);
+
+        // when & then
+        mvc.perform(get("/results").param("alias", "john_dow")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonExpect));
+    }
+
+    @Test
+    public void getResultsByIdTest() throws Exception {
+        // given
+        User user = new User("john_doe");
+        Multiplication multiplication = new Multiplication(50, 70);
         MultiplicationResultAttempt attempt = new MultiplicationResultAttempt(
                 user, multiplication, 3500, true);
-        List<MultiplicationResultAttempt> recentAttempts = Lists.newArrayList(attempt, attempt);
-        given(multiplicationService
-                .getStatsForUser("john_dow"))
-                .willReturn(recentAttempts);
+        given(multiplicationService.getResultById(4L)).willReturn(attempt);
 
-        // when
-        MockHttpServletResponse response =
-                mvc.perform(
-                        get("/results").param("alias", "john_dow"))
-                        .andReturn().getResponse();
+        String jsonExpect = jsonResult.write(attempt).getJson();
 
-        // then
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString())
-                .isEqualTo(jsonResultAttemptList.write(recentAttempts).getJson());
+        // when & then
+        mvc.perform(get("/results/4")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonExpect));
     }
 }

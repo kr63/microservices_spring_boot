@@ -1,8 +1,5 @@
 package microservices.book.multiplication.controller;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import microservices.book.multiplication.domain.MultiplicationResultAttempt;
 import microservices.book.multiplication.service.MultiplicationService;
@@ -33,12 +30,9 @@ final class MultiplicationResultAttemptController {
     ResponseEntity<MultiplicationResultAttempt> postResult(
             @RequestBody MultiplicationResultAttempt multiplicationResultAttempt) {
 
-        boolean isCorrect = multiplicationService.checkAttempt(multiplicationResultAttempt);
-        MultiplicationResultAttempt attemptCopy = new MultiplicationResultAttempt(
-                multiplicationResultAttempt.getUser(),
-                multiplicationResultAttempt.getMultiplication(),
-                multiplicationResultAttempt.getResultAttempt(), isCorrect);
-        return ResponseEntity.ok(attemptCopy);
+        MultiplicationResultAttempt resultAttempt =
+                multiplicationService.checkAttempt(multiplicationResultAttempt);
+        return ResponseEntity.ok(resultAttempt);
     }
 
     @GetMapping
@@ -49,15 +43,9 @@ final class MultiplicationResultAttemptController {
 
     @GetMapping("/{resultId}")
     ResponseEntity<MultiplicationResultAttempt> getResultById(
-            final @PathVariable("resultId") Long resultId) {
-        log.info("Retrieving result {} from server @{}", resultId, serverPort);
-        return ResponseEntity.ok(multiplicationService.getResultById(resultId));
-    }
+            @PathVariable("resultId") final Long resultId) {
 
-    @RequiredArgsConstructor
-    @NoArgsConstructor(force = true)
-    @Getter
-    static final class ResultResponse {
-        private final boolean correct;
+        log.info("Retrieving result {} from server @ {}", resultId, serverPort);
+        return ResponseEntity.ok(multiplicationService.getResultById(resultId));
     }
 }
