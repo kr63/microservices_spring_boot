@@ -27,7 +27,7 @@ final class MultiplicationController {
 
     @GetMapping("/random")
     Multiplication getRandomMultiplication() {
-        log.info("Generating a random multiplication form server @{}", serverPort);
+        log.info("Generating a random multiplication from server @{}", serverPort);
         return multiplicationService.createRandomMultiplication();
     }
 }

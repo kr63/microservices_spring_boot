@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("test")
-@WebMvcTest
+@WebMvcTest(AdminController.class)
 public class AdminControllerEnabledTest {
 
     @MockBean
@@ -31,10 +31,10 @@ public class AdminControllerEnabledTest {
     @Test
     public void deleteDatabaseTest() throws Exception {
         // when
-        MockHttpServletResponse response =
-                mvc.perform(post("/multiplication/admin/delete-db")
+        MockHttpServletResponse response = mvc.perform(
+                post("/multiplication/admin/delete-db")
                         .accept(MediaType.APPLICATION_JSON))
-                        .andReturn().getResponse();
+                .andReturn().getResponse();
 
         // then
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());

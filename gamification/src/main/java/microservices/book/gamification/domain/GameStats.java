@@ -36,7 +36,7 @@ public final class GameStats {
      * @param userId the user's id
      * @return a {@link GameStats} object with zero score and no badges
      */
-    public static GameStats emtyStats(final Long userId) {
+    public static GameStats emptyStats(final Long userId) {
         return new GameStats(userId, 0, Collections.emptyList());
     }
 

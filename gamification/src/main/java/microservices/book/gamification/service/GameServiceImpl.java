@@ -12,6 +12,7 @@ import microservices.book.gamification.repository.ScoreCardRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -49,7 +50,7 @@ public class GameServiceImpl implements GameService {
                             .map(BadgeCard::getBadge)
                             .collect(Collectors.toList()));
         }
-        return GameStats.emtyStats(userId);
+        return GameStats.emptyStats(userId);
     }
 
     /**
@@ -131,13 +132,15 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public GameStats retrieveStatsForUser(final Long userId) {
-        int score = scoreCardRepository.getTotalScoreForUser(userId);
+        Integer score = scoreCardRepository.getTotalScoreForUser(userId);
+        if (score == null) {
+            return new GameStats(userId, 0, Collections.emptyList());
+        }
         List<BadgeCard> badgeCards = badgeCardRepository
                 .findByUserIdOrderByBadgeTimestampDesc(userId);
-        return new GameStats(userId, score,
-                badgeCards.stream()
-                        .map(BadgeCard::getBadge)
-                        .collect(Collectors.toList()));
+        return new GameStats(userId, score, badgeCards.stream()
+                .map(BadgeCard::getBadge)
+                .collect(Collectors.toList()));
     }
 
     @Override
