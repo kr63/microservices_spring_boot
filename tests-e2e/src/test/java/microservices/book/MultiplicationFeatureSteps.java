@@ -52,7 +52,7 @@ public class MultiplicationFeatureSteps {
     }
 
     @Then(("^the user gets (\\d+) points for the attempt$"))
-    public void the_user_gets_points_for_the_attempt(final int points) throws InterruptedException {
+    public void the_user_gets_points_for_the_attempt(final int points) throws Throwable {
         long attemptId = lastAttemptResponse.getId();
         Thread.sleep(2000);
         int score = app.getScoreForAttempt(attemptId).getScore();

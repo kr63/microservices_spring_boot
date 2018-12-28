@@ -13,12 +13,12 @@ public class MultiplicationApplication {
 
     private static final String APPLICATION_BASE_URL = "http://localhost:8000/api";
     private static final String CONTEXT_ATTEMPTS = "/results";
-    private static final String CONTEXT_DELETE_DATA_GAM = "/gamification/admin/delete-db";
-    private static final String CONTEXT_DELETE_DATA_MULT = "/multiplication/admin/delete-db";
     private static final String CONTEXT_SCORE = "/scores/";
     private static final String CONTEXT_STATS = "/stats";
     private static final String CONTEXT_USERS = "/users/";
     private static final String CONTEXT_LEADERBOARD = "/leaders";
+    private static final String CONTEXT_DELETE_DATA_GAM = "/gamification/admin/delete-db";
+    private static final String CONTEXT_DELETE_DATA_MULT = "/multiplication/admin/delete-db";
 
     private ApplicationHttpUtils httpUtils;
 
@@ -38,7 +38,7 @@ public class MultiplicationApplication {
         String attemptJson = "{\"user\":{\"alias\":\"" + userAlias + "\"}," +
                 "\"multiplication\":{\"factorA\":\"" + factorA +
                 "\",\"factorB\":\"" + factorB + "\"}," +
-                "\"resultAttempt\":\"" + result + "\"";
+                "\"resultAttempt\":\"" + result + "\"}";
 
         String response = httpUtils.post(CONTEXT_ATTEMPTS, attemptJson);
         ObjectMapper objectMapper = new ObjectMapper();
